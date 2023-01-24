@@ -11,13 +11,15 @@ module.exports = {
       } ,
       keyframes:{
         'open-menu':{
-          '0%': {transform: 'scaleY(0)'},
-          '80%': {transform: 'scaleY(1.2)'},
+          '0%': {transform: 'scaleX(0)'},
+          '80%': {transform: 'scaleX(1.2)'},
           '100%':{transform : 'scale(1)'},
         },
+        
       },
       animation:{
-        'open-menu': 'open-menu 0.5s ease-in-out forwards',
+        'open-menu': 'open-menu 0.3s ease-in-out forwards',
+        
       }
     },
   },
