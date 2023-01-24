@@ -1,40 +1,33 @@
 import { Link } from "react-router-dom";
-import { BsHeart, BsFillBagFill, BsPerson } from "react-icons/bs";
-import { HiMagnifyingGlass } from "react-icons/hi2";
-import { GiHamburgerMenu } from "react-icons/gi";
+
+import { HiOutlineShoppingBag } from "react-icons/hi2";
+import { CgMenuRightAlt } from "react-icons/Cg";
+import { useState } from "react";
+import mainImage from "../assets/main.jpg";
 
 function NavBar() {
+  const [toggle, setToggle] = useState(false);
+  const toggleMenu = () => {
+    setToggle(!toggle);
+  };
+
   return (
     <>
       <header>
         <nav>
-          <div className=" text-2xl  h-10 flex sm:justify-end  justify-around sm:mr-5  items-center  gap-x-4  bg-[#f6f6f6] ">
-            <button className="hover:text-red-600 sm:hidden">
-              <GiHamburgerMenu />
-            </button>
-            <button className="hover:text-red-600">
-              <HiMagnifyingGlass />
-            </button>
-            <button className="hover:text-red-600">
-              <BsPerson />
-            </button>
-            <button className="hover:text-red-600">
-              <BsHeart />
-            </button>
-            <button className="hover:text-red-600">
-              <BsFillBagFill />
-            </button>
-          </div>
-          <div className="h-20 flex justify-center items-center ">
-            <Link
-              to="#"
-              className="text-[#253746] tracking-widest text-2xl font-semibold uppercase"
-            >
-              Brand
-            </Link>
+          <div className=" text-2xl flex justify-between px-3 py-4 sm:py-0">
+            <h1 className="font-bold">Discover</h1>
+            <div className="">
+              <button className="sm:invisible">
+                <CgMenuRightAlt onClick={toggleMenu} />
+              </button>
+              <button>
+                <HiOutlineShoppingBag />
+              </button>
+            </div>
           </div>
 
-          <div className="flex justify-center invisible sm: visible ">
+          <div className="sm:flex sm:justify-center sm:visible hidden  ">
             <ul className="flex gap-7 ">
               <li>
                 <Link
@@ -71,29 +64,44 @@ function NavBar() {
             </ul>{" "}
           </div>
         </nav>
-        <section
-          id="mobile-menu"
-          className="absolute top-0 bg-black w-full text-5xl hidden flex-col justify-content-center origin-top animate-open-menu "
-        >
-          {" "}
-          <button className="sm:hidden text-white">
-            <GiHamburgerMenu />
-          </button>
-          <nav className="flex flex-col min-h-screen items-center py-8">
-            <Link to="#" className="w-full text-center py-6 text-white">
-              New
-            </Link>
-            <Link to="#" className="w-full text-center py-6 text-white">
-              Men
-            </Link>
-            <Link to="#" className="w-full text-center py-6 text-white">
-              Women
-            </Link>
-            <Link to="#" className="w-full text-center py-6 text-white">
-              Kids
-            </Link>
-          </nav>
-        </section>
+
+        {toggle && (
+          <section
+            id="mobile-menu"
+            className={
+              toggle
+                ? "z-10 absolute min-h-screen top-0 bg-white w-full text-2xl sm:hidden flex-col justify-content-center origin-left animate-open-menu"
+                : "hidden"
+            }
+          >
+            {" "}
+            <button className="text-black h-10  flex place-content-end place-items-center w-full px-9 ">
+              <CgMenuRightAlt onClick={toggleMenu} />
+            </button>
+            <nav className="flex flex-col  items-center py-8 sm:hidden ">
+              <form className="rounded-2xl flex p-1  border-2 border-black ">
+                <input
+                  type="search"
+                  placeholder="search"
+                  className="m-0 py-2 px-2 "
+                />
+              </form>
+
+              <Link to="#" className="w-full text-center py-6 text-black">
+                New
+              </Link>
+              <Link to="#" className="w-full text-center py-6 text-black">
+                Men
+              </Link>
+              <Link to="#" className="w-full text-center py-6 text-black">
+                Women
+              </Link>
+              <Link to="#" className="w-full text-center py-6 text-black">
+                Kids
+              </Link>
+            </nav>
+          </section>
+        )}
       </header>
     </>
   );
