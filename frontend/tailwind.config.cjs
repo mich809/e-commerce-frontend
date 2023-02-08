@@ -6,6 +6,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily:{
+        "Cor" : ['Cormorant Garamond','Arial']
+      },
+      
       letterSpacing:{
         letterSpace : '30px'
       } ,
